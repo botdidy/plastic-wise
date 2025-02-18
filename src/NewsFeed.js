@@ -10,7 +10,7 @@ function NewsFeed() {
     // Replace 'YOUR_API_KEY' with your actual NewsAPI key.
     const API_KEY = 'e94b200473694fd5bbdbd21d7039e954';
     // Query for environmental news related to plastic recycling and sustainability.
-    const url = `https://newsapi.org/v2/everything?q=plastic+recycling+environment+sustainability&sortBy=publishedAt&apiKey=${API_KEY}`;
+    const url = `https://newsapi.org/v2/everything?q=plastic+recycling+environment+sustainability&sortBy=publishedAt&apiKey=${e94b200473694fd5bbdbd21d7039e954}`;
 
     fetch(url)
       .then(response => {

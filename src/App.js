@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
+import L from 'leaflet'; import 'leaflet/dist/leaflet.css';
 
 // Fix for default Leaflet icon paths in React:
 delete L.Icon.Default.prototype._getIconUrl;

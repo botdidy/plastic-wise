@@ -1,14 +1,13 @@
 // src/App.js
-
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 import Login from './Login';
 import Profile from './Profile';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import './App.css';
 
 // Fix for default Leaflet icon paths in React:
 delete L.Icon.Default.prototype._getIconUrl;
@@ -18,30 +17,30 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
-// Dummy recycling centers (replace coords with real data if needed)
+// Dummy recycling centers (replace with real data if available)
 const recyclingCenters = [
   {
     name: "City Recycling Center",
-    position: [40.7128, -74.0060], // New York City
+    position: [40.7128, -74.0060],
     description: "Accepts all plastic bottle types."
   },
   {
     name: "Community Drop-Off",
-    position: [34.0522, -118.2437], // Los Angeles
+    position: [34.0522, -118.2437],
     description: "Open 9am-5pm, Monday - Friday."
   }
 ];
 
 // Conversion factors for environmental impact
-const WATER_SAVED_PER_BOTTLE = 5; // liters saved per bottle recycled
-const ENERGY_SAVED_PER_BOTTLE = 0.1; // kWh saved per bottle
-const CO2_SAVED_PER_BOTTLE = 0.05; // kg CO₂ saved per bottle
+const WATER_SAVED_PER_BOTTLE = 5;      // liters saved per bottle recycled
+const ENERGY_SAVED_PER_BOTTLE = 0.1;     // kWh saved per bottle
+const CO2_SAVED_PER_BOTTLE = 0.05;       // kg CO₂ saved per bottle
 
 function App() {
   const [bottlesUsed, setBottlesUsed] = useState(0);
   const [user, setUser] = useState(null);
 
-  // Listen for Firebase authentication state changes
+  // Monitor authentication state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -49,7 +48,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  // Load bottle count from local storage on mount
+  // Load bottle count from local storage
   useEffect(() => {
     const savedCount = localStorage.getItem('plasticwise_bottles');
     if (savedCount) {
@@ -57,7 +56,7 @@ function App() {
     }
   }, []);
 
-  // Save bottle count to local storage whenever it changes
+  // Save bottle count to local storage
   useEffect(() => {
     localStorage.setItem('plasticwise_bottles', bottlesUsed.toString());
   }, [bottlesUsed]);
@@ -72,7 +71,7 @@ function App() {
     }
   };
 
-  // If the user is not logged in, show the login component
+  // If user is not logged in, show the login form
   if (!user) {
     return (
       <div style={styles.container}>
@@ -81,6 +80,7 @@ function App() {
     );
   }
 
+  // Render the main app for authenticated users
   return (
     <div style={styles.container}>
       <header style={styles.header}>
@@ -116,13 +116,11 @@ function App() {
         <h2>Recycling Centers Near You</h2>
         <div style={{ width: '100%', height: '400px' }}>
           <MapContainer
-            center={[37.0902, -95.7129]} // Rough center of the US
+            center={[37.0902, -95.7129]}
             zoom={4}
             style={{ width: '100%', height: '100%' }}
           >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {recyclingCenters.map((center, index) => (
               <Marker key={index} position={center.position}>
                 <Popup>

@@ -13,21 +13,21 @@ function NewsFeed() {
     const url = 'https://newsapi.org/v2/everything?q=plastic+recycling+environment+sustainability&sortBy=publishedAt&apiKey=e94b200473694fd5bbdbd21d7039e954';
 
     fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        setArticles(data.articles);
-        setLoading(false);
-      })
-      .catch(err => {
-        setError(err);
-        setLoading(false);
-      });
-  }, []);
+  .then(response => {
+    if (!response.ok) {
+      console.error('Response Status:', response.status, response.statusText);
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    setArticles(data.articles);
+    setLoading(false);
+  })
+  .catch(err => {
+    setError(err);
+    setLoading(false);
+  });
 
   if (loading) {
     return <p>Loading news...</p>;

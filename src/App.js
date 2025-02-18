@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet'; import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 // Fix for default Leaflet icon paths in React:
 delete L.Icon.Default.prototype._getIconUrl;
@@ -25,6 +26,11 @@ const recyclingCenters = [
     description: "Open 9am-5pm, Monday - Friday."
   }
 ];
+
+// Conversion factors for environmental impact
+const WATER_SAVED_PER_BOTTLE = 5; // liters saved per bottle recycled
+const ENERGY_SAVED_PER_BOTTLE = 0.1; // kWh saved per bottle
+const CO2_SAVED_PER_BOTTLE = 0.05; // kg CO₂ saved per bottle
 
 function App() {
   const [bottlesUsed, setBottlesUsed] = useState(0);
@@ -69,6 +75,16 @@ function App() {
         >
           Reset
         </button>
+      </section>
+
+      <section style={styles.section}>
+        <h2>Environmental Impact</h2>
+        <p>By recycling your plastic bottles, you've saved:</p>
+        <ul>
+          <li>{bottlesUsed * WATER_SAVED_PER_BOTTLE} liters of water</li>
+          <li>{bottlesUsed * ENERGY_SAVED_PER_BOTTLE} kWh of energy</li>
+          <li>{bottlesUsed * CO2_SAVED_PER_BOTTLE} kg of CO₂ emissions</li>
+        </ul>
       </section>
 
       <section style={styles.section}>

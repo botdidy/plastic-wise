@@ -1,95 +1,16 @@
-/* Global Styles */
+/* src/App.css */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #f7f7f7;
 }
 
-/* Container for the App */
-.container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+button {
+  outline: none;
 }
 
-/* Header Styles */
-.header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.header h1 {
-  margin: 0;
-  color: #333;
-}
-
-/* Section Styles */
-.section {
-  margin-bottom: 2rem;
-  padding: 1rem;
-  border-bottom: 1px solid #ddd;
-}
-
-.section h2 {
-  margin-top: 0;
-  color: #2e7d32;
-}
-
-/* Button Styles */
-.button {
-  margin-right: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
+input {
+  outline: none;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  cursor: pointer;
-}
-
-.button.reset {
-  background-color: #f44336;
-}
-
-/* Footer Styles */
-.footer {
-  text-align: center;
-  margin-top: 2rem;
-  padding: 1rem;
-  color: #666;
-  border-top: 1px solid #ddd;
-  font-size: 0.9rem;
-}
-
-/* NewsFeed Component Styles */
-.news-feed {
-  padding: 1rem;
-  background-color: #eef9f1;
-  border-radius: 4px;
-}
-
-.news-feed h2 {
-  margin-top: 0;
-  color: #2e7d32;
-}
-
-.news-feed ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.news-feed li {
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 0.5rem;
-}
-
-.news-feed li a {
-  text-decoration: none;
-  color: #1e88e5;
-}
-
-.news-feed li a:hover {
-  text-decoration: underline;
 }

@@ -56,7 +56,7 @@ function App() {
     }
   }, []);
 
-  // Save bottle count to local storage
+  // Save bottle count to local storage whenever it changes
   useEffect(() => {
     localStorage.setItem('plasticwise_bottles', bottlesUsed.toString());
   }, [bottlesUsed]);
@@ -71,7 +71,7 @@ function App() {
     }
   };
 
-  // If user is not logged in, show the login form
+  // If the user is not authenticated, render the login form
   if (!user) {
     return (
       <div style={styles.container}>
@@ -80,7 +80,7 @@ function App() {
     );
   }
 
-  // Render the main app for authenticated users
+  // Render the full app for authenticated users
   return (
     <div style={styles.container}>
       <header style={styles.header}>
